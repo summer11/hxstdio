@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives | 鸠子公宝鸡丁宝鸠居的秘密花园</title>
+  <title>初夏的奇妙之旅 | 鸠子公宝鸡丁宝鸠居的秘密花园</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="鸠子公宝鸡丁宝鸠居的秘密花园">
-<meta property="og:url" content="http://summer11.github.io/hxstdio/archives/">
+  <meta name="description" content="满月照 @北京">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初夏的奇妙之旅">
+<meta property="og:url" content="http://summer11.github.io/hxstdio/2014/11/23/dream/">
 <meta property="og:site_name" content="鸠子公宝鸡丁宝鸠居的秘密花园">
-<meta property="og:description">
+<meta property="og:description" content="满月照 @北京">
+<meta property="og:image" content="/hxstdio/images/yiyi1.jpg">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="鸠子公宝鸡丁宝鸠居的秘密花园">
-<meta name="twitter:description">
+<meta name="twitter:title" content="初夏的奇妙之旅">
+<meta name="twitter:description" content="满月照 @北京">
 
   
     <link rel="alternative" href="/atom.xml" title="鸠子公宝鸡丁宝鸠居的秘密花园" type="application/atom+xml">
@@ -65,9 +66,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-dream" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-dream" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/hxstdio/2014/11/23/dream/" class="article-date">
   <time datetime="2014-11-23T10:09:25.000Z" itemprop="datePublished">Nov 23 2014</time>
@@ -84,8 +83,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/hxstdio/2014/11/23/dream/">初夏的奇妙之旅</a>
+    <h1 class="article-title" itemprop="name">
+      初夏的奇妙之旅
     </h1>
   
 
@@ -107,67 +106,20 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-对象的复制与传递参数" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/hxstdio/2014/11/21/对象的复制与传递参数/" class="article-date">
-  <time datetime="2014-11-21T02:37:43.000Z" itemprop="datePublished">Nov 21 2014</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/hxstdio/categories/前端学习笔记/">前端学习笔记</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/hxstdio/2014/11/21/对象的复制与传递参数/">对象的复制与传递参数</a>
-    </h1>
+    <a href="/hxstdio/2014/11/21/对象的复制与传递参数/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">对象的复制与传递参数</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>好记性不如烂笔头~</p>
-<h4 id="一、引用类型值，复制">一、引用类型值，复制</h4>
-<p>当从一个变量A向另一个变量B复制引用类型的值时，会将存储在变量A对象中的值复制一份，放到为新变量B分配的空间中，注意：<strong>这个值的副本实际上是一个指针</strong>，而这个指针指向存储在堆中的一个对象。复制结束后，两个变量实际上将引用同一个对象。</p>
-<p><font color="red">因此改变其中一个变量，会影响另一个变量</font>，</p>
-<figure class="highlight {javascript}"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj1 = <span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line"><span class="keyword">var</span> obj2 = obj1;</div><div class="line">obj1.name = <span class="string">"hxstdio"</span>;</div><div class="line">alert(obj2.name); <span class="comment">//hxstdio</span></div></pre></td></tr></table></figure>
-
-<h4 id="二、引用类型值，传递参数">二、引用类型值，传递参数</h4>
-<p>书上说ECMAScript中所有函数的参数都是按值传递的。难以理解，如果参数是object，不是按引用传递的么？先看下面的例子：</p>
-<figure class="highlight {javascript}"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setName</span><span class="params">(obj)</span></span>{</div><div class="line">    obj.name = <span class="string">"hxstdio"</span>;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">var</span> myObj = <span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line">setName(myObj);</div><div class="line">alert(myObj.name); <span class="comment">//hxstdio</span></div></pre></td></tr></table></figure>
-
-<p>在setName这个函数内部，obj与myObj引用的是同一个对象，所以在函数内部修改obj后，函数外部的myObj也被修改了。是不是意味着，对象是按引用传递的？为了证明对象是按值传递的，再看下面的例子：</p>
-<figure class="highlight {javascript}"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setName</span><span class="params">(obj)</span></span>{</div><div class="line">    obj.name = <span class="string">"hxstdio"</span>;</div><div class="line">    obj = <span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line">    obj.name = <span class="string">"new one"</span>;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">var</span> myObj = <span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line">setName(myObj);</div><div class="line">alert(myObj.name); <span class="comment">//hxstdio</span></div></pre></td></tr></table></figure>
-
-<p>如果对象是按引用传递的，那么在函数里给obj赋了一个新的对象，函数外面的myObj应该指向这个新的对象，那么alert的值应该是”new one”才对，但是实际上alert的还是“hxstdio”，由此可以说明函数参数为对象时，也是按值来传递的，只是会按引用来访问同一个对象。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://summer11.github.io/2014/11/21/对象的复制与传递参数/" data-id="0ejq3o8tsiikuz6o" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hxstdio/tags/javascript/">javascript</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
 
-
-  
-  
 </section>
         
           <aside id="sidebar">
