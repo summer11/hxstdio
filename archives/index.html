@@ -67,6 +67,93 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-使用nodejs开发框架Express小记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/11/25/使用nodejs开发框架Express小记/" class="article-date">
+  <time datetime="2014-11-25T03:36:21.000Z" itemprop="datePublished">Nov 25 2014</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/11/25/使用nodejs开发框架Express小记/">使用nodejs的web开发框架Express小记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>好记性不如烂笔头~</p>
+<p>前一阵子为组内搭建了一个线上接口的响应时间分析系统，用的是nodejs作为服务端、Express作为框架、数据库使用mysql、前端展示用了bootstrap、以及hightcharts用来生成各种漂亮的图表。期中踩了不少坑，时间久了怕忘记，记录下来方便以后查阅。</p>
+<p>生成的图表大概长这样…敏感数据打码。</p>
+<p><img src="/images/goodsample.png" alt="图一"><br><img src="/images/badsample.png" alt="图二"></p>
+<ul>
+<li>横坐标：接口响应时间</li>
+<li>纵坐标：响应时间区间内的请求数量</li>
+</ul>
+<p>表现正常的接口，其接口时间应该是一个正态分布图，如图一。</p>
+<p>而图二，明显的有两个波峰，说明接口在特定场景下，响应时间会变长。体现在业务上会发现某个菊花有时候会转好久，这就需要反馈给服务端同学去查原因了。</p>
+<h4 id="一、环境搭建">一、环境搭建</h4>
+<p>主要是参考了这篇文章 : <a href="http://blog.fens.me/nodejs-express3/" target="_blank" rel="external">Nodejs开发框架Express3.0开发手记–从零开始</a></p>
+<h4 id="二、笔记">二、笔记</h4>
+<h6 id="1-Express生成工程的目录结构：">1.Express生成工程的目录结构：</h6>
+<p><img style="height:100px;" src="/images/express.png"></p>
+<ul>
+<li>doc：无视掉，自己写的文档</li>
+<li>node_modules：无视掉，存放所有的项目依赖库</li>
+<li>public：静态文件<ul>
+<li>img：存放html页面中引用的图片，bootstrap中引用的图片直接扔这就行</li>
+<li>javascript：引用的js库，比如jquery.js,bootstrap.js,hightcharts.js等，以及html页面中引用的index.js等</li>
+<li>stylesheets：引用的css库，比如bootstrap.css等</li>
+</ul>
+</li>
+<li>routes：路由文件(MVC中的C)<ul>
+<li>index.js：首页</li>
+<li>ajaxRouter.js：处理所有ajax请求</li>
+<li>utils：处理数据库请求、公共方法、存放静态变量等</li>
+</ul>
+</li>
+<li>views：存放html页面,ejs模板</li>
+<li>app.js：程序启动文件，服务端相关配置</li>
+</ul>
+<h6 id="2-代码片段">2.代码片段</h6>
+<ul>
+<li>配置路由，指定处理ajax请求的具体方法：</li>
+</ul>
+<figure class="highlight {javascript}"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">app.js</div><div class="line"></div><div class="line">var ajax<span class="variable">Routes</span> = require('./routes/ajax<span class="variable">Routes</span>');</div><div class="line">app.post('/<span class="keyword">query</span><span class="variable">ApiName</span>', ajax<span class="variable">Routes</span>.<span class="keyword">query</span><span class="variable">ApiName</span>); </div><div class="line">app.post('/<span class="keyword">query</span><span class="variable">ApiCost</span>', ajax<span class="variable">Routes</span>.<span class="keyword">query</span><span class="variable">ApiCost</span>);</div><div class="line">app.post('/<span class="keyword">query</span><span class="variable">BussinessList</span>', ajax<span class="variable">Routes</span>.<span class="keyword">query</span><span class="variable">BussinessList</span>); </div><div class="line">app.post('/<span class="keyword">query</span><span class="variable">MtopList</span>', ajax<span class="variable">Routes</span>.<span class="keyword">query</span><span class="variable">MtopList</span>);</div></pre></td></tr></table></figure>
+
+<ul>
+<li>从前端页面发送ajax请求数据库：</li>
+</ul>
+<figure class="highlight {javascript}"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">index.js</div><div class="line"></div><div class="line">    $.ajax({</div><div class="line">        type: <span class="string">'POST'</span>,</div><div class="line">        dataType: <span class="string">'json'</span>,</div><div class="line">        url: <span class="string">'/queryApiCost'</span>,</div><div class="line">        data: {api : apiName}, <span class="comment">//传参，在处理ajax请求的方法中，通过req.body.api获取</span></div><div class="line">        success: <span class="function"><span class="keyword">function</span> <span class="params">(data)</span> </span>{</div><div class="line">            <span class="comment">// 拿到数据后，更新前端页面</span></div><div class="line">            $(<span class="string">'#div_chart'</span>).show();</div><div class="line">            _drawLineCharts(data, <span class="string">'#container_line_chart'</span>);</div><div class="line">            _drawBarCharts(data, <span class="string">'#container_bar_chart'</span>);</div><div class="line">        },error:<span class="function"><span class="keyword">function</span><span class="params">(XMLHttpRequest, textStatus, errorThrown)</span></span>{</div><div class="line">            <span class="comment">//TODO: 统一出错页面</span></div><div class="line">        }</div><div class="line">    });</div></pre></td></tr></table></figure>
+
+<ul>
+<li>处理ajax请求：</li>
+</ul>
+<figure class="highlight {javascript}"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">ajaxRouter.js</div><div class="line"></div><div class="line"><span class="comment">// 处理AJAX请求，获取所有有数据的MTOP接口名称，并以JSON形式返回给前端 </span></div><div class="line">exports.queryApiName = <span class="function"><span class="keyword">function</span><span class="params">(req, res)</span></span>{</div><div class="line">    <span class="built_in">console</span>.log(req.body.input); <span class="comment">//ajax请求中的传递来的参数，data:{input:"xxxx"}</span></div><div class="line"></div><div class="line">    dbHandler.query_all_apis_name(<span class="function"><span class="keyword">function</span><span class="params">(rows_api_names)</span></span>{</div><div class="line">        <span class="keyword">var</span> apiNameList = dataHandler.getApiNameList(rows_api_names);</div><div class="line"></div><div class="line">        <span class="comment">//转成json格式 </span></div><div class="line">        res.send(<span class="built_in">JSON</span>.stringify(apiNameList));</div><div class="line">    });</div><div class="line">};</div></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://esummer.cc/2014/11/25/使用nodejs开发框架Express小记/" data-id="9ofzdg8m1cd8s94i" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-一一的拼图" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2014/11/25/一一的拼图/" class="article-date">
@@ -272,7 +359,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/一一/">一一</a><span class="tag-list-count">3</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/">nodejs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/一一/">一一</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -281,7 +368,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/javascript/" style="font-size: 15.00px;">javascript</a><a href="/tags/一一/" style="font-size: 20.00px;">一一</a><a href="/tags/无聊/" style="font-size: 10.00px;">无聊</a><a href="/tags/日记/" style="font-size: 10.00px;">日记</a>
+      <a href="/tags/javascript/" style="font-size: 15.00px;">javascript</a><a href="/tags/nodejs/" style="font-size: 15.00px;">nodejs</a><a href="/tags/一一/" style="font-size: 20.00px;">一一</a><a href="/tags/无聊/" style="font-size: 10.00px;">无聊</a><a href="/tags/日记/" style="font-size: 10.00px;">日记</a>
     </div>
   </div>
 
@@ -290,7 +377,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">5</span></li></ul>
     </div>
   </div>
 
@@ -300,6 +387,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2014/11/25/使用nodejs开发框架Express小记/">使用nodejs的web开发框架Express小记</a>
+          </li>
         
           <li>
             <a href="/2014/11/25/一一的拼图/">拼图</a>
