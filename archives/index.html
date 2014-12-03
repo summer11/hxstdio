@@ -67,6 +67,82 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-诗一样的javascript语句" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/12/03/诗一样的javascript语句/" class="article-date">
+  <time datetime="2014-12-03T06:30:56.000Z" itemprop="datePublished">Dec 3 2014</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端学习笔记/">前端学习笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/12/03/诗一样的javascript语句/">诗一样的javascript语句</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>以下搬运自前淘宝前端 @流火 大神的 <a href="http://www.benben.cc/blog/?p=391" target="_blank" rel="external">笨笨剥壳</a></p>
+<h4 id="1-将一个数组插入另一个数组的指定位置">1.将一个数组插入另一个数组的指定位置</h4>
+<figure class="highlight {javascript}"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>];</div><div class="line"><span class="keyword">var</span> b = [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>];</div><div class="line"><span class="keyword">var</span> insertIndex = <span class="number">3</span>;</div><div class="line">a.splice.apply(a, <span class="keyword">Array</span>.<span class="keyword">concat</span>(insertIndex, <span class="number">0</span>, b)); <span class="comment">// a: 1,2,3,4,5,6,7,8,9</span></div></pre></td></tr></table></figure>
+
+<h4 id="2-删除数组元素">2.删除数组元素</h4>
+<figure class="highlight {javascript}"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</div><div class="line">a.splice(<span class="number">3</span>,<span class="number">1</span>); <span class="comment">//从index为3的元素开始，删除1个元素</span></div></pre></td></tr></table></figure>
+
+<h4 id="3-快速获取最大值、最小值">3.快速获取最大值、最小值</h4>
+<figure class="highlight {javascript}"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Math</span>.max.apply(<span class="built_in">Math</span>, [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]) <span class="comment">//3</span></div><div class="line"><span class="built_in">Math</span>.min.apply(<span class="built_in">Math</span>, [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]) <span class="comment">//1</span></div></pre></td></tr></table></figure>
+
+<h4 id="4-条件判断">4.条件判断</h4>
+<figure class="highlight {javascript}"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">var <span class="variable">a =</span> b && <span class="number">1</span>;</div><div class="line">//相当于</div><div class="line"><span class="keyword">if</span> (b) {</div><div class="line">    <span class="variable">a =</span> <span class="number">1</span>;</div><div class="line">} <span class="keyword">else</span> {</div><div class="line">    <span class="variable">a =</span> b;</div><div class="line">}</div><div class="line"> </div><div class="line">var <span class="variable">a =</span> b || <span class="number">1</span>; </div><div class="line">//相当于</div><div class="line"><span class="keyword">if</span> (b) {</div><div class="line">    <span class="variable">a =</span> b;</div><div class="line">} <span class="keyword">else</span> {</div><div class="line">    <span class="variable">a =</span> <span class="number">1</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h4 id="5-取整同时转成数值型">5.取整同时转成数值型</h4>
+<figure class="highlight {javascript}"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="string">'10.567890'</span>|<span class="number">0</span> <span class="comment">//结果: 10</span></div><div class="line"><span class="string">'10.567890'</span>^<span class="number">0</span> <span class="comment">//结果: 10</span></div><div class="line">-<span class="number">2.23456789</span>|<span class="number">0</span> <span class="comment">//结果: -2</span></div><div class="line">~~-<span class="number">2.23456789</span> <span class="comment">//结果: -2</span></div></pre></td></tr></table></figure>
+
+<h4 id="6-日期转成数值">6.日期转成数值</h4>
+<figure class="highlight {javascript}"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> d = +<span class="keyword">new</span> <span class="built_in">Date</span>(); <span class="comment">//1295698416792</span></div></pre></td></tr></table></figure>
+
+<h4 id="7-类数组对象转数组">7.类数组对象转数组</h4>
+<figure class="highlight {javascript}"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [].slice.call(<span class="built_in">arguments</span>)</div></pre></td></tr></table></figure>
+
+<h4 id="8-漂亮的随机码">8.漂亮的随机码</h4>
+<figure class="highlight {javascript}"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Math</span>.random().toString(<span class="number">16</span>).substring(<span class="number">2</span>); <span class="comment">//14位</span></div><div class="line"><span class="built_in">Math</span>.random().toString(<span class="number">36</span>).substring(<span class="number">2</span>); <span class="comment">//11位</span></div></pre></td></tr></table></figure>
+
+<h4 id="9-合并数组">9.合并数组</h4>
+<figure class="highlight {javascript}"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</div><div class="line"><span class="keyword">var</span> b = [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>];</div><div class="line"><span class="built_in">Array</span>.prototype.push.apply(a, b);</div><div class="line">uneval(a); <span class="comment">//[1,2,3,4,5,6]</span></div></pre></td></tr></table></figure>
+
+<h4 id="10-用0补全位数">10.用0补全位数</h4>
+<figure class="highlight {javascript}"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">prefixInteger</span><span class="params">(num, length)</span> {</span></div><div class="line">    <span class="keyword">return</span> (num / <span class="transposed_variable">Math.</span>pow(<span class="number">10</span>, <span class="built_in">length</span>)).toFixed(<span class="built_in">length</span>).substr(<span class="number">2</span>);</div><div class="line">}</div><div class="line">prefixInteger(<span class="number">125</span>,<span class="number">6</span>); <span class="comment">//000125</span></div></pre></td></tr></table></figure>
+
+<h4 id="11-交换值">11.交换值</h4>
+<figure class="highlight {javascript}"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">a= [<span class="link_label">b, b=a</span>][<span class="link_reference">0</span>];</div></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://esummer.cc/2014/12/03/诗一样的javascript语句/" data-id="83hyoepjuzgpjl55" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-使用nodejs开发框架Express小记" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2014/11/25/使用nodejs开发框架Express小记/" class="article-date">
@@ -350,7 +426,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/初夏的奇妙之旅/">初夏的奇妙之旅</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端学习笔记/">前端学习笔记</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/初夏的奇妙之旅/">初夏的奇妙之旅</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端学习笔记/">前端学习笔记</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -359,7 +435,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/">nodejs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/一一/">一一</a><span class="tag-list-count">3</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/">nodejs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/一一/">一一</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -368,7 +444,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/javascript/" style="font-size: 15.00px;">javascript</a><a href="/tags/nodejs/" style="font-size: 15.00px;">nodejs</a><a href="/tags/一一/" style="font-size: 20.00px;">一一</a><a href="/tags/无聊/" style="font-size: 10.00px;">无聊</a><a href="/tags/日记/" style="font-size: 10.00px;">日记</a>
+      <a href="/tags/javascript/" style="font-size: 16.67px;">javascript</a><a href="/tags/nodejs/" style="font-size: 13.33px;">nodejs</a><a href="/tags/一一/" style="font-size: 20.00px;">一一</a><a href="/tags/无聊/" style="font-size: 10.00px;">无聊</a><a href="/tags/日记/" style="font-size: 10.00px;">日记</a>
     </div>
   </div>
 
@@ -377,7 +453,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">5</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">5</span></li></ul>
     </div>
   </div>
 
@@ -387,6 +463,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2014/12/03/诗一样的javascript语句/">诗一样的javascript语句</a>
+          </li>
         
           <li>
             <a href="/2014/11/25/使用nodejs开发框架Express小记/">使用nodejs的web开发框架Express小记</a>
@@ -402,10 +482,6 @@
         
           <li>
             <a href="/2014/11/23/dream/">初夏的奇妙之旅</a>
-          </li>
-        
-          <li>
-            <a href="/2014/11/21/对象的复制与传递参数/">对象的复制与传递参数</a>
           </li>
         
       </ul>
