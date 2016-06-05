@@ -4,17 +4,16 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>喵星人 | hxstdio</title>
+  <title>Tag: CSS | hxstdio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description">
-<meta property="og:type" content="article">
-<meta property="og:title" content="喵星人">
-<meta property="og:url" content="http://hxstdio.cc/2014/11/24/cat/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="hxstdio">
+<meta property="og:url" content="http://hxstdio.cc/tags/CSS/">
 <meta property="og:site_name" content="hxstdio">
 <meta property="og:description">
-<meta property="og:image" content="/images/cat.jpg">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="喵星人">
+<meta name="twitter:title" content="hxstdio">
 <meta name="twitter:description">
 
   
@@ -178,11 +177,13 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-cat" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap">
+  
+    <article id="post-css模式匹配" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/11/24/cat/" class="article-date">
-  	<time datetime="2014-11-24T05:35:11.000Z" itemprop="datePublished">Nov 24 2014</time>
+      <a href="/2016/06/05/css模式匹配/" class="article-date">
+  	<time datetime="2016-06-05T00:49:55.000Z" itemprop="datePublished">Jun 5 2016</time>
 </a>
     </div>
   
@@ -194,107 +195,140 @@
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      喵星人
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/05/css模式匹配/">css模式匹配</a>
     </h1>
   
 
       </header>
       
-      <div class="article-info article-info-post">
-        
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/一一/">一一</a></li></ul>
-	</div>
-
-        
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/初夏的奇妙之旅/">初夏的奇妙之旅</a>
-	</div>
-
-
-        <div class="clearfix"></div>
-      </div>
-      
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="/images/cat.jpg" alt="某人最爱的猫"></p>
+        <p>CSS中，模式匹配规则决定样式规则应用于文档树中的元素，这些模式叫选择器，从简单的元素名到丰富的上下文模式（rich contextual patterns）。如果特定元素的模式中的所有条件都为真，则选择器匹配该元素</p>
+<p>选择器中，文档语言元素名的大小写敏感性取决于文档语言，例如，HTML中，元素名是大小写不敏感的，但在XML中是大小写敏感的</p>
+<p>下表总结了CSS 2.1选择器语法：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Pattern</th>
+<th style="text-align:left">Meaning</th>
+<th style="text-align:left">Describ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">*</td>
+<td style="text-align:left">匹配所有元素</td>
+<td style="text-align:left">通配选择器</td>
+</tr>
+<tr>
+<td style="text-align:left">E</td>
+<td style="text-align:left">匹配所有E元素（即，E类型的元素）</td>
+<td style="text-align:left">类型选择器（标签选择器）</td>
+</tr>
+<tr>
+<td style="text-align:left">E F</td>
+<td style="text-align:left">匹配所有E元素后代中的F元素</td>
+<td style="text-align:left">后代选择器</td>
+</tr>
+<tr>
+<td style="text-align:left">E &gt; F</td>
+<td style="text-align:left">匹配所有E元素子级中的F元素</td>
+<td style="text-align:left">子选择器</td>
+</tr>
+<tr>
+<td style="text-align:left">E:first-child</td>
+<td style="text-align:left">匹配父元素的第一个子级为E的E元素</td>
+<td style="text-align:left">:first-child伪类</td>
+</tr>
+<tr>
+<td style="text-align:left">E:link<br>E:visited</td>
+<td style="text-align:left">匹配未访问过的(:link)或者已被访问过的(:visited)超链接源anchor的E元素</td>
+<td style="text-align:left">link伪类</td>
+</tr>
+<tr>
+<td style="text-align:left">E:active<br>E:hover<br>E:focus</td>
+<td style="text-align:left">匹配处于某些用户动作期间的E元素</td>
+<td style="text-align:left">动态伪类</td>
+</tr>
+<tr>
+<td style="text-align:left">E:lang(c)</td>
+<td style="text-align:left">匹配语言为（人类）语言c的E元素（文档语言会指定怎样确定语言）</td>
+<td style="text-align:left">:lang()伪类</td>
+</tr>
+<tr>
+<td style="text-align:left">E + F</td>
+<td style="text-align:left">匹配所有前面紧跟着一个E元素兄弟的F元素</td>
+<td style="text-align:left">相邻选择器</td>
+</tr>
+<tr>
+<td style="text-align:left">E[foo]</td>
+<td style="text-align:left">匹配具有”foo”属性集（无论值是什么）的E元素</td>
+<td style="text-align:left">属性选择器</td>
+</tr>
+<tr>
+<td style="text-align:left">E[foo=”warning”]</td>
+<td style="text-align:left">匹配所有”foo”属性值恰好是”wraning”的E元素</td>
+<td style="text-align:left">属性选择器</td>
+</tr>
+<tr>
+<td style="text-align:left">E[foo~=”warning”]</td>
+<td style="text-align:left">匹配所有”foo”属性值为一列空格分隔的值，且其中之一恰好是”warning”的E元素</td>
+<td style="text-align:left">属性选择器</td>
+</tr>
+<tr>
+<td style="text-align:left">E[lang&#124;=”en”]</td>
+<td style="text-align:left">匹配所有”lang”属性值为一列以”en”开头（从左向右）用连字符分隔的值的E元素</td>
+<td style="text-align:left">属性选择器</td>
+</tr>
+<tr>
+<td style="text-align:left">DIV.warning</td>
+<td style="text-align:left">语言特定的（HTML中，与DIV[class~=”warning”]相同</td>
+<td style="text-align:left">类选择器</td>
+</tr>
+<tr>
+<td style="text-align:left">E#myid</td>
+<td style="text-align:left">匹配所有ID为”myid”的E元素</td>
+<td style="text-align:left">ID选择器</td>
+</tr>
+</tbody>
+</table>
 
       
     </div>
     
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2014/11/25/一一的拼图/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          拼图
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2014/11/23/dream/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">初夏的奇妙之旅</div>
-      <strong class="article-nav-caption">></strong>
-    </a>
-  
-</nav>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
+	</div>
 
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/前端学习笔记/">前端学习笔记</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
   
 </article>
 
 
-<div class="share_jia">
-	<!-- JiaThis Button BEGIN -->
-	<div class="jiathis_style">
-		<span class="jiathis_txt">Share to: &nbsp; </span>
-		<a class="jiathis_button_facebook"></a> 
-    <a class="jiathis_button_twitter"></a>
-    <a class="jiathis_button_plus"></a> 
-    <a class="jiathis_button_tsina"></a>
-		<a class="jiathis_button_cqq"></a>
-		<a class="jiathis_button_douban"></a>
-		<a class="jiathis_button_weixin"></a>
-		<a class="jiathis_button_tumblr"></a>
-    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-	</div>
-	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
-	<!-- JiaThis Button END -->
-</div>
 
 
 
 
 
 
-<div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="cat" data-title="喵星人" data-url="http://hxstdio.cc/2014/11/24/cat/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"true"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
 
-
-
-
+  
+  
 </div>
       <footer id="footer">
   <div class="outer">
@@ -320,9 +354,9 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false
 	}
